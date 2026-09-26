@@ -1,0 +1,141 @@
+{
+  "dataset_name": "Enterprise B2B Customer Analytics & Health Dataset",
+  "total_records": 5000,
+  "features_count": 10,
+  "missing_values": 0,
+  "target_column": "has_churned",
+  "class_distribution": {
+    "retained": 4002,
+    "churned": 998,
+    "churn_rate_pct": 20.0
+  },
+  "features": {
+    "tenure_months": {
+      "type": "integer",
+      "min": 1,
+      "max": 72,
+      "mean": 22.9,
+      "description": "Number of continuous months the customer has subscribed to the platform."
+    },
+    "contract_length_months": {
+      "type": "integer",
+      "options": [
+        1,
+        12,
+        24,
+        36
+      ],
+      "description": "Duration of active committed contract agreement in months."
+    },
+    "contract_type": {
+      "type": "categorical",
+      "options": [
+        "Month-to-Month",
+        "Annual",
+        "Multi-Year"
+      ],
+      "description": "Contract billing cadence and renewal commitment tier."
+    },
+    "service_tier": {
+      "type": "categorical",
+      "options": [
+        "Starter",
+        "Growth",
+        "Enterprise"
+      ],
+      "description": "SaaS package subscription level and feature permissions."
+    },
+    "monthly_charges": {
+      "type": "float",
+      "min": 49.07,
+      "max": 898.83,
+      "mean": 226.34,
+      "description": "Current recurring monthly license spend ($ USD)."
+    },
+    "total_charges": {
+      "type": "float",
+      "min": 47.89,
+      "max": 67222.11,
+      "mean": 5096.3,
+      "description": "Cumulative historical payments received from this customer ($ USD)."
+    },
+    "product_usage_score": {
+      "type": "float",
+      "min": 5.0,
+      "max": 100.0,
+      "mean": 64.5,
+      "description": "Telemetry engagement index tracking DAU/MAU and feature depth (0-100 scale)."
+    },
+    "nps_score": {
+      "type": "integer",
+      "min": 0,
+      "max": 10,
+      "mean": 6.4,
+      "description": "Customer satisfaction score recorded during the latest quarterly review."
+    },
+    "support_tickets_quarter": {
+      "type": "integer",
+      "min": 0,
+      "max": 12,
+      "mean": 1.8,
+      "description": "Technical and operational support tickets logged in past 90 days."
+    },
+    "payment_delay_days": {
+      "type": "integer",
+      "min": 0,
+      "max": 50,
+      "mean": 1.4,
+      "description": "Average overdue invoice latency in days over the last 3 billing cycles."
+    }
+  },
+  "sample_profiles": [
+    {
+      "label": "Low Risk: Enterprise Champion",
+      "tag": "Safe Account",
+      "values": {
+        "tenure_months": 36,
+        "contract_length_months": 24,
+        "contract_type": "Multi-Year",
+        "service_tier": "Enterprise",
+        "monthly_charges": 580.0,
+        "total_charges": 20880.0,
+        "product_usage_score": 92.5,
+        "nps_score": 9,
+        "support_tickets_quarter": 1,
+        "payment_delay_days": 0
+      }
+    },
+    {
+      "label": "Moderate Risk: Growth Account",
+      "tag": "Attention Needed",
+      "values": {
+        "tenure_months": 11,
+        "contract_length_months": 12,
+        "contract_type": "Annual",
+        "service_tier": "Growth",
+        "monthly_charges": 220.0,
+        "total_charges": 2420.0,
+        "product_usage_score": 61.0,
+        "nps_score": 6,
+        "support_tickets_quarter": 3,
+        "payment_delay_days": 8
+      }
+    },
+    {
+      "label": "Critical Risk: Disengaged SMB",
+      "tag": "Immediate Danger",
+      "values": {
+        "tenure_months": 3,
+        "contract_length_months": 1,
+        "contract_type": "Month-to-Month",
+        "service_tier": "Starter",
+        "monthly_charges": 89.0,
+        "total_charges": 267.0,
+        "product_usage_score": 24.0,
+        "nps_score": 2,
+        "support_tickets_quarter": 7,
+        "payment_delay_days": 21
+      }
+    }
+  ]
+}

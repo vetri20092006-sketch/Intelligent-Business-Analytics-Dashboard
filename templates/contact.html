@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-fade-in" id="contact-page-container">
+  <div class="container">
+    
+    <!-- Page Header -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="display:inline-flex; align-items:center; gap:0.5rem; padding: 4px 12px; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-full); margin-bottom: 0.75rem;">
+        <i class="fa-solid fa-headset" style="color:var(--brand-primary); font-size:0.8rem;"></i>
+        <span style="font-size:0.78rem; font-weight:700; color:var(--brand-primary); text-transform:uppercase;">Technical Support & Documentation</span>
+      </div>
+      <h2>Contact & Integration Knowledgebase</h2>
+      <p style="margin-top: 0.5rem; max-width: 650px;">
+        Have questions about deploying this analytics platform or adapting the machine learning pipeline for your own enterprise dataset? Get in touch or consult our developer FAQ below.
+      </p>
+    </div>
+
+    <!-- Contact Form & Developer Info Dual Column -->
+    <div style="display: grid; grid-template-columns: 1.25fr 0.9fr; gap: 2.5rem; margin-bottom: 3.5rem;">
+      
+      <!-- Interactive Contact Form -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fa-solid fa-paper-plane" style="color:var(--brand-primary)"></i> Send an Inquiry
+          </h3>
+          <span class="badge badge-primary">Direct Channel</span>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="contact_name">Full Name</label>
+              <input type="text" id="contact_name" name="name" class="form-control" placeholder="Alex Morgan" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact_email">Business Email Address</label>
+              <input type="email" id="contact_email" name="email" class="form-control" placeholder="alex.morgan@company.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact_topic">Inquiry Topic</label>
+              <select id="contact_topic" name="topic" class="form-select">
+                <option value="Model Customization">Model Customization (.pkl Drop-in)</option>
+                <option value="Enterprise Integration">Enterprise REST API Ingestion</option>
+                <option value="Bug Report / Feedback">Bug Report or UI Feedback</option>
+                <option value="General Question">General ML Architecture Question</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact_message">Inquiry Details</label>
+              <textarea id="contact_message" name="message" class="form-control" rows="4" placeholder="Describe your question or requirements..." required></textarea>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end;">
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary">
+                <div class="btn-spinner"></div>
+                <i class="fa-solid fa-paper-plane"></i>
+                <span class="btn-text">Submit Inquiry</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Developer Info & Platform Specs Card -->
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fa-solid fa-id-badge" style="color:var(--brand-secondary)"></i> Engineering Lead
+            </h3>
+            <span class="badge badge-cyan">Developer</span>
+          </div>
+
+          <p style="font-size: 0.9rem; margin-bottom: 1.25rem;">
+            Designed and built as a production-quality Machine Learning Mini-Project demonstrating modern UI/UX design, modular backend APIs, and explainable AI pipelines.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.88rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-location-dot" style="color:var(--brand-primary); width:20px;"></i>
+              <span style="color:var(--text-secondary);">Enterprise Analytics Lab</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-envelope" style="color:var(--brand-secondary); width:20px;"></i>
+              <span style="color:var(--text-secondary);">analytics-ml@omnimetrics.local</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-circle-nodes" style="color:var(--color-success); width:20px;"></i>
+              <span style="color:var(--text-secondary);">Flask 3.1 • Python 3.11 • Scikit-Learn</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="border-color: rgba(99, 102, 241, 0.25);">
+          <h4 style="margin-bottom: 0.5rem; display:flex; align-items:center; gap:0.5rem;">
+            <i class="fa-solid fa-bolt" style="color:var(--color-warning);"></i> Fast Deployment Note
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            To run this application locally on any machine: simply install dependencies from <code style="font-family:var(--font-mono); color:var(--brand-primary);">requirements.txt</code> and execute <code style="font-family:var(--font-mono); color:var(--brand-secondary);">python app.py</code>.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         FAQ SECTION: Accordion
+         ======================================================================== -->
+    <div id="faq" class="card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">
+            <i class="fa-solid fa-circle-question" style="color:var(--color-warning)"></i> Frequently Asked Questions (FAQ)
+          </h3>
+          <p class="card-subtitle">Common questions regarding data formatting and model substitution</p>
+        </div>
+        <span class="badge badge-warning">Knowledgebase</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        
+        <!-- FAQ 1 -->
+        <details class="faq-item" style="background:var(--bg-secondary); border:1px solid var(--card-border); border-radius:var(--radius-md); padding:1rem 1.25rem; cursor:pointer;" open>
+          <summary style="font-weight:700; color:var(--text-primary); font-size:1rem; outline:none;">
+            How do I plug in my own trained machine learning model (.pkl)?
+          </summary>
+          <div style="margin-top:0.75rem; font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+            Save your trained scikit-learn pipeline or classifier using <code style="font-family:var(--font-mono); color:var(--brand-secondary);">joblib.dump(model, "models/model.pkl")</code> and replace the file at <code style="font-family:var(--font-mono);">models/model.pkl</code>. When <code style="font-family:var(--font-mono);">app.py</code> runs, it automatically loads this file at startup into memory.
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="faq-item" style="background:var(--bg-secondary); border:1px solid var(--card-border); border-radius:var(--radius-md); padding:1rem 1.25rem; cursor:pointer;">
+          <summary style="font-weight:700; color:var(--text-primary); font-size:1rem; outline:none;">
+            What if my dataset has different columns or features?
+          </summary>
+          <div style="margin-top:0.75rem; font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+            Open <code style="font-family:var(--font-mono); color:var(--color-warning);">config.py</code> and update the <code style="font-family:var(--font-mono);">REQUIRED_NUMERIC_FEATURES</code> and <code style="font-family:var(--font-mono);">REQUIRED_CATEGORICAL_FEATURES</code> lists. Then update the input form in <code style="font-family:var(--font-mono);">templates/prediction.html</code> to match your new fields.
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="faq-item" style="background:var(--bg-secondary); border:1px solid var(--card-border); border-radius:var(--radius-md); padding:1rem 1.25rem; cursor:pointer;">
+          <summary style="font-weight:700; color:var(--text-primary); font-size:1rem; outline:none;">
+            Is any external cloud connection or paid API required?
+          </summary>
+          <div style="margin-top:0.75rem; font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+            No. OmniMetrics is 100% self-contained. Predictions run locally inside your Python runtime via scikit-learn and Flask. No external API keys or cloud subscriptions are needed.
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="faq-item" style="background:var(--bg-secondary); border:1px solid var(--card-border); border-radius:var(--radius-md); padding:1rem 1.25rem; cursor:pointer;">
+          <summary style="font-weight:700; color:var(--text-primary); font-size:1rem; outline:none;">
+            How are the prescriptive recommendations generated?
+          </summary>
+          <div style="margin-top:0.75rem; font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+            The backend features a rule-based prescriptive engine in <code style="font-family:var(--font-mono); color:var(--brand-primary);">app.py</code> that analyzes the predicted churn probability alongside specific client friction triggers (such as high support tickets, low product usage score, or payment delay days) to formulate immediate countermeasures.
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("contact-submit-btn");
+
+  if (contactForm && submitBtn) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = contactForm.elements["name"]?.value.trim();
+      const email = contactForm.elements["email"]?.value.trim();
+      const topic = contactForm.elements["topic"]?.value;
+      const message = contactForm.elements["message"]?.value.trim();
+
+      if (!name || !email || !message) {
+        window.showToast("Inquiry Incomplete", "Please complete all required fields.", "warning");
+        return;
+      }
+
+      submitBtn.classList.add("loading");
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, topic, message })
+        });
+
+        const data = await res.json();
+        if (!res.ok || data.status !== "success") {
+          throw new Error(data.message || "Submission failed.");
+        }
+
+        window.showToast("Inquiry Received", data.message, "success", 5000);
+        contactForm.reset();
+      } catch (err) {
+        window.showToast("Submission Error", err.message, "danger");
+      } finally {
+        submitBtn.classList.remove("loading");
+        submitBtn.disabled = false;
+      }
+    });
+  }
+});
+</script>
+{% endblock %}

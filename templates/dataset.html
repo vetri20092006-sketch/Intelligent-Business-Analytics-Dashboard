@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-fade-in" id="dataset-page-container">
+  <div class="container">
+    
+    <!-- Page Header & Download Action -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1.5rem; margin-bottom: 2.5rem;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; padding: 4px 12px; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: var(--radius-full); margin-bottom: 0.75rem;">
+          <i class="fa-solid fa-database" style="color:var(--brand-secondary); font-size:0.8rem;"></i>
+          <span style="font-size:0.78rem; font-weight:700; color:var(--brand-secondary); text-transform:uppercase;">Data Exploration & Dictionary</span>
+        </div>
+        <h2>Enterprise Customer Analytics Dataset</h2>
+        <p style="margin-top: 0.5rem; max-width: 650px;">
+          Explore sanitized high-dimensional telemetry records, contract distributions, and feature definitions used to train the predictive machine learning engine.
+        </p>
+      </div>
+
+      <div>
+        <a href="{{ url_for('download_dataset') }}" class="btn btn-secondary">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Export Dataset (.csv)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Summary Metrics KPI Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Total Records</span>
+          <div class="kpi-icon-wrap" style="background:rgba(99, 102, 241, 0.15); color:var(--brand-primary);">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+        <div id="ds-total-records" class="kpi-value">5,000</div>
+        <div class="kpi-subtext">Enterprise B2B account instances</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Feature Columns</span>
+          <div class="kpi-icon-wrap" style="background:rgba(6, 182, 212, 0.15); color:var(--brand-secondary);">
+            <i class="fa-solid fa-columns"></i>
+          </div>
+        </div>
+        <div class="kpi-value">10</div>
+        <div class="kpi-subtext">8 numeric + 2 categorical inputs</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Missing Values</span>
+          <div class="kpi-icon-wrap" style="background:rgba(16, 185, 129, 0.15); color:var(--color-success);">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+        <div class="kpi-value" style="color:var(--color-success);">0</div>
+        <div class="kpi-subtext">100% clean, zero NaN/null values</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Active Retained</span>
+          <div class="kpi-icon-wrap" style="background:rgba(16, 185, 129, 0.15); color:var(--color-success);">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+        </div>
+        <div id="ds-retained-pct" class="kpi-value">--%</div>
+        <div class="kpi-subtext">Class 0 (Retained customers)</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Churn Rate</span>
+          <div class="kpi-icon-wrap" style="background:rgba(244, 63, 94, 0.15); color:var(--color-danger);">
+            <i class="fa-solid fa-user-xmark"></i>
+          </div>
+        </div>
+        <div id="ds-churn-pct" class="kpi-value" style="color:var(--color-danger);">--%</div>
+        <div class="kpi-subtext">Class 1 (Churned accounts)</div>
+      </div>
+    </div>
+
+    <!-- Data Visualization Charts Row -->
+    <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 2rem; margin-bottom: 2.5rem;">
+      
+      <!-- Target Class Distribution -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">
+              <i class="fa-solid fa-chart-pie" style="color:var(--brand-primary)"></i> Target Class Balance
+            </h3>
+            <p class="card-subtitle">Active accounts vs churned instances</p>
+          </div>
+          <span class="badge badge-primary">Target</span>
+        </div>
+        <div style="position: relative; height: 260px; width: 100%;">
+          <canvas id="targetDistChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Churn Rate by Contract Commitment -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">
+              <i class="fa-solid fa-chart-column" style="color:var(--brand-secondary)"></i> Churn Rate by Contract Agreement
+            </h3>
+            <p class="card-subtitle">Month-to-month volatility vs committed stability</p>
+          </div>
+          <span class="badge badge-cyan">Correlation</span>
+        </div>
+        <div style="position: relative; height: 260px; width: 100%;">
+          <canvas id="contractDistChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Interactive Data Table Card -->
+    <div class="card" style="margin-bottom: 2.5rem;">
+      <div class="card-header" style="flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h3 class="card-title">
+            <i class="fa-solid fa-table" style="color:var(--brand-primary)"></i> Live Dataset Explorer
+          </h3>
+          <p class="card-subtitle">Interactive paginated view with live search and column sorting</p>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+          <!-- Search Input -->
+          <div style="position:relative; width:220px;">
+            <input type="text" id="table-search-input" class="form-control" placeholder="Search ID, tier, contract..." style="padding-left:2.2rem; font-size:0.85rem;">
+            <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:0.85rem; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:0.8rem;"></i>
+          </div>
+
+          <!-- Limit Select -->
+          <div style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; color:var(--text-muted);">
+            <span>Show</span>
+            <select id="table-limit-select" class="form-select" style="width:75px; padding:0.4rem 0.6rem; font-size:0.85rem;">
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsive Table -->
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="sortable" data-sort="customer_id">Customer ID <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="service_tier">Tier <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="contract_type">Contract <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="tenure_months">Tenure <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="monthly_charges">Monthly Spend <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="total_charges">Total Spend <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="product_usage_score">Usage Score <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="nps_score">NPS <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="support_tickets_quarter">Tickets <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="has_churned">Status <i class="fa-solid fa-sort"></i></th>
+            </tr>
+          </thead>
+          <tbody id="dataset-table-body">
+            <!-- Populated via dataset.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination Footer -->
+      <div class="table-pagination">
+        <div id="table-count-info">Showing records...</div>
+        <div class="page-controls">
+          <button id="page-prev-btn" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-chevron-left"></i> Previous
+          </button>
+          <span id="current-page-num" style="display:inline-flex; align-items:center; padding:0 0.5rem; font-family:var(--font-mono); font-size:0.85rem;">Page 1</span>
+          <button id="page-next-btn" class="btn btn-outline btn-sm">
+            Next <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Dictionary Table Section -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">
+            <i class="fa-solid fa-book-bookmark" style="color:var(--color-warning)"></i> Data Dictionary & Schema Definitions
+          </h3>
+          <p class="card-subtitle">Technical feature documentation for ML engineers and analysts</p>
+        </div>
+        <span class="badge badge-warning">Schema Specs</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Feature Identifier</th>
+              <th>Data Type</th>
+              <th>Permitted Range / Choices</th>
+              <th>Business Domain Significance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">tenure_months</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Integer</span></td>
+              <td>1 to 72 months</td>
+              <td>Active account longevity. Accounts in months 1-3 experience 3x higher risk than accounts with tenure > 18 months.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">contract_type</td>
+              <td><span class="badge badge-cyan">Categorical</span></td>
+              <td>Month-to-Month, Annual, Multi-Year</td>
+              <td>Renewal cadence. Month-to-month contracts lack switching barrier friction and exhibit elevated churn volatility.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">contract_length_months</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Integer</span></td>
+              <td>1, 12, 24, 36</td>
+              <td>Committed contract period duration. Multi-year contracts strongly protect Net Revenue Retention.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">service_tier</td>
+              <td><span class="badge badge-cyan">Categorical</span></td>
+              <td>Starter, Growth, Enterprise</td>
+              <td>License package tier. Enterprise tiers receive dedicated CSM support and custom SLA agreements.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">monthly_charges</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Float</span></td>
+              <td>$10.00 to $2,500.00</td>
+              <td>Monthly Recurring Revenue (MRR) billed to the customer. Primary weight in financial risk calculations.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">total_charges</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Float</span></td>
+              <td>$10.00 to $100,000.00</td>
+              <td>Historical cumulative revenue received. Proxy for customer lifetime value (LTV).</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">product_usage_score</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Float</span></td>
+              <td>0.0 to 100.0</td>
+              <td>Daily Active Users (DAU) ratio and feature breadth index. Strongest negative correlation with churn.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">nps_score</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Integer</span></td>
+              <td>0 to 10</td>
+              <td>Customer Net Promoter Score recorded during quarterly reviews. 0-6 signals active dissatisfaction.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">support_tickets_quarter</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Integer</span></td>
+              <td>0 to 14 tickets</td>
+              <td>Technical and operational tickets logged in past 90 days. > 4 indicates severe product workflow blockers.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--brand-primary);">payment_delay_days</td>
+              <td><span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Integer</span></td>
+              <td>0 to 50 days</td>
+              <td>Average overdue invoice payment latency. > 15 days indicates cashflow problems or billing dissatisfaction.</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--color-danger);">has_churned</td>
+              <td><span class="badge badge-danger">Binary Target</span></td>
+              <td>0 (Retained), 1 (Churned)</td>
+              <td>Ground-truth classification target. 0 indicates active paying subscriber; 1 indicates canceled/churned account.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dataset.js') }}"></script>
+{% endblock %}

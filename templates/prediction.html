@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-fade-in" id="prediction-page-container">
+  <div class="container">
+    
+    <!-- Page Header -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="display:inline-flex; align-items:center; gap:0.5rem; padding: 4px 12px; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-full); margin-bottom: 0.75rem;">
+        <i class="fa-solid fa-microchip" style="color:var(--brand-primary); font-size:0.8rem;"></i>
+        <span style="font-size:0.78rem; font-weight:700; color:var(--brand-primary); text-transform:uppercase;">Real-Time Inference Studio</span>
+      </div>
+      <h2>Customer Churn & Health Prediction</h2>
+      <p style="margin-top: 0.5rem; max-width: 650px;">
+        Provide customer parameters below or select a pre-configured sample profile to generate an instant retention probability score, financial impact analysis, and prescriptive business recommendations.
+      </p>
+    </div>
+
+    <!-- Quick Prefill Presets Bar -->
+    <div class="sample-presets-bar">
+      <span class="sample-presets-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Try Sample Scenarios:</span>
+      <button type="button" class="preset-chip" data-preset="enterprise">
+        <i class="fa-solid fa-crown" style="color:var(--color-success)"></i> Enterprise Champion (Low Risk)
+      </button>
+      <button type="button" class="preset-chip" data-preset="growth">
+        <i class="fa-solid fa-chart-line" style="color:var(--color-warning)"></i> Growth Account (Moderate Risk)
+      </button>
+      <button type="button" class="preset-chip" data-preset="critical">
+        <i class="fa-solid fa-triangle-exclamation" style="color:var(--color-danger)"></i> Disengaged SMB (Critical Risk)
+      </button>
+    </div>
+
+    <!-- Main Prediction Form Grid -->
+    <form id="prediction-form" novalidate>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+        
+        <!-- Column 1: Account & Contract Profile -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fa-solid fa-building" style="color:var(--brand-primary)"></i> Account Profile
+            </h3>
+            <span class="badge badge-primary">Contractual</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="tenure_months">
+                <span>Account Tenure (Months)</span>
+                <span class="badge-metric">1 - 72 mos</span>
+              </label>
+              <input type="number" id="tenure_months" name="tenure_months" class="form-control" min="1" max="120" value="14" required>
+              <span class="input-hint">Total continuous active months on platform.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contract_type">Contract Commitment Tier</label>
+              <select id="contract_type" name="contract_type" class="form-select" required>
+                <option value="Month-to-Month">Month-to-Month (Flexible)</option>
+                <option value="Annual" selected>Annual (12 Months Committed)</option>
+                <option value="Multi-Year">Multi-Year (24-36 Months Committed)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contract_length_months">Contract Term (Months)</label>
+              <select id="contract_length_months" name="contract_length_months" class="form-select" required>
+                <option value="1">1 Month</option>
+                <option value="12" selected>12 Months (1 Year)</option>
+                <option value="24">24 Months (2 Years)</option>
+                <option value="36">36 Months (3 Years)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="service_tier">Subscription Service Tier</label>
+              <select id="service_tier" name="service_tier" class="form-select" required>
+                <option value="Starter">Starter Package ($49 - $99/mo)</option>
+                <option value="Growth" selected>Growth Tier ($149 - $299/mo)</option>
+                <option value="Enterprise">Enterprise Elite ($399+/mo)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Financial & Billing Metrics -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fa-solid fa-receipt" style="color:var(--brand-secondary)"></i> Spend & Billing
+            </h3>
+            <span class="badge badge-cyan">Financial</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="monthly_charges">
+                <span>Monthly Recurring Spend ($ USD)</span>
+                <span class="badge-metric">$10 - $2,500</span>
+              </label>
+              <input type="number" step="0.5" id="monthly_charges" name="monthly_charges" class="form-control" min="10" max="5000" value="189.00" required>
+              <span class="input-hint">Current MRR contribution for active seats.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="total_charges">
+                <span>Cumulative Lifetime Spend ($ USD)</span>
+                <span class="badge-metric">Auto-Calculated</span>
+              </label>
+              <input type="number" step="1" id="total_charges" name="total_charges" class="form-control" min="10" max="100000" value="2646" required>
+              <span class="input-hint">Total revenue billed to date (or override manually).</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="payment_delay_days">
+                <span>Payment Delay Latency</span>
+                <span class="badge-metric"><span id="badge-delay">0</span> days</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" id="slider-delay" class="form-range" min="0" max="45" value="0">
+                <input type="number" id="payment_delay_days" name="payment_delay_days" class="form-control" style="width:75px;" min="0" max="60" value="0" required>
+              </div>
+              <span class="input-hint">Average days overdue across past invoices.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Telemetry, Sentiment & Friction -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fa-solid fa-heart-pulse" style="color:var(--color-warning)"></i> Usage & Telemetry
+            </h3>
+            <span class="badge badge-warning">Behavioral</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="product_usage_score">
+                <span>Product Engagement Index</span>
+                <span class="badge-metric"><span id="badge-usage">68.5</span> / 100</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" id="slider-usage" class="form-range" min="0" max="100" step="0.5" value="68.5">
+                <input type="number" step="0.1" id="product_usage_score" name="product_usage_score" class="form-control" style="width:75px;" min="0" max="100" value="68.5" required>
+              </div>
+              <span class="input-hint">Feature depth, DAU/MAU ratio, and telemetry activity.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="nps_score">
+                <span>Quarterly NPS Sentiment</span>
+                <span class="badge-metric"><span id="badge-nps">8</span> / 10</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" id="slider-nps" class="form-range" min="0" max="10" step="1" value="8">
+                <input type="number" id="nps_score" name="nps_score" class="form-control" style="width:75px;" min="0" max="10" value="8" required>
+              </div>
+              <span class="input-hint">0-6 Detractor, 7-8 Passive, 9-10 Promoter.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="support_tickets_quarter">
+                <span>Support Tickets (Last 90 Days)</span>
+                <span class="badge-metric"><span id="badge-tickets">1</span> ticket(s)</span>
+              </label>
+              <div class="slider-container">
+                <input type="range" id="slider-tickets" class="form-range" min="0" max="14" step="1" value="1">
+                <input type="number" id="support_tickets_quarter" name="support_tickets_quarter" class="form-control" style="width:75px;" min="0" max="25" value="1" required>
+              </div>
+              <span class="input-hint">High ticket spikes indicate system friction or blockers.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Button Controls -->
+      <div style="display: flex; gap: 1rem; align-items: center; justify-content: flex-end; margin-bottom: 3rem;">
+        <button type="button" id="reset-form-btn" class="btn btn-outline">
+          <i class="fa-solid fa-arrow-rotate-left"></i>
+          <span>Reset Defaults</span>
+        </button>
+        <button type="submit" id="predict-submit-btn" class="btn btn-primary btn-lg">
+          <div class="btn-spinner"></div>
+          <i class="fa-solid fa-calculator"></i>
+          <span class="btn-text">Execute ML Inference</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Skeleton Loading State (Shown while waiting for API) -->
+    <div id="prediction-skeleton" style="display:none; margin-bottom: 2rem;">
+      <div class="skeleton skeleton-card" style="margin-bottom:1rem;"></div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         RESULTS CARD & RISK GAUGE SECTION
+         ======================================================================== -->
+    <div id="result-card-wrap" class="result-card-wrap">
+      
+      <!-- Top Diagnostic Card -->
+      <div class="glass-card" style="margin-bottom: 2rem; border-color: rgba(99, 102, 241, 0.4);">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fa-solid fa-chart-pie" style="color:var(--brand-primary)"></i> Inference Diagnostic Assessment
+          </h3>
+          <span id="res-risk-badge" class="badge badge-success">
+            <i class="fa-solid fa-circle-check"></i> Low Risk • Healthy Account
+          </span>
+        </div>
+
+        <div class="result-hero-box">
+          <!-- Circular Animated Score Gauge -->
+          <div class="gauge-visual">
+            <svg class="gauge-svg" viewBox="0 0 200 200">
+              <circle class="gauge-bg-circle" cx="100" cy="100" r="80"></circle>
+              <circle id="gauge-circle-progress" class="gauge-progress-circle" cx="100" cy="100" r="80"></circle>
+            </svg>
+            <div class="gauge-center-content">
+              <div id="gauge-score-value" class="gauge-score-value">14.2%</div>
+              <div id="gauge-score-label" class="gauge-score-label">Churn Risk</div>
+            </div>
+          </div>
+
+          <!-- Risk Summary & ARR Breakdown -->
+          <div class="result-details">
+            <div class="result-status-header">
+              <h2 id="res-risk-headline" class="result-heading" style="color:var(--text-primary);">
+                Low Risk (14.2% Probability)
+              </h2>
+            </div>
+            <p id="res-risk-summary" class="result-summary-text">
+              Strong retention indicators and high satisfaction. Account is primed for expansion.
+            </p>
+
+            <div class="financial-metric-chips">
+              <div class="fin-chip">
+                <div class="fin-chip-label">Annual Contract Value (ARR)</div>
+                <div id="res-arr-val" class="fin-chip-val">$2,268</div>
+              </div>
+              <div class="fin-chip">
+                <div class="fin-chip-label">Expected Revenue at Risk</div>
+                <div id="res-risk-rev-val" class="fin-chip-val" style="color:var(--color-danger);">$322</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drivers & Prescriptive Recommendations Grid -->
+        <div class="insights-dual-grid">
+          <!-- Left: Key Factors -->
+          <div>
+            <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-fingerprint" style="color:var(--brand-secondary)"></i> Top Behavioral Drivers
+            </h4>
+            <div id="risk-drivers-list">
+              <!-- Populated via prediction.js -->
+            </div>
+          </div>
+
+          <!-- Right: Prescriptive Action Roadmap -->
+          <div>
+            <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-list-check" style="color:var(--color-success)"></i> Prescriptive Retention Playbook
+            </h4>
+            <div id="recommendations-list">
+              <!-- Populated via prediction.js -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+{% endblock %}

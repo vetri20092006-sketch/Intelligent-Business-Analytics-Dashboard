@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-fade-in">
+
+  <!-- ========================================================================
+       HERO SECTION: Asymmetrical Startup Caliber Hero
+       ======================================================================== -->
+  <section class="hero-section" style="padding: 2.5rem 0 5rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem; align-items: center;">
+        
+        <!-- Hero Left Column: Copy & CTAs -->
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:0.6rem; padding: 6px 14px; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-full); margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-sparkles" style="color: var(--brand-secondary); font-size: 0.85rem;"></i>
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--brand-primary); letter-spacing: 0.04em; text-transform: uppercase;">
+              Predictive Intelligence Engine v2.4
+            </span>
+          </div>
+
+          <h1 style="margin-bottom: 1.25rem;">
+            Turn Customer Signals into <span style="background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Predictable Enterprise Growth</span>
+          </h1>
+
+          <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; max-width: 580px;">
+            OmniMetrics delivers explainable machine learning analytics for B2B subscription businesses. Predict churn risk weeks before it happens, discover critical revenue friction, and automatically generate prescriptive retention playbooks.
+          </p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+            <a href="{{ url_for('prediction_page') }}" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Launch Prediction Studio</span>
+            </a>
+            <a href="{{ url_for('performance_page') }}" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>View Model Diagnostics</span>
+            </a>
+          </div>
+
+          <!-- Micro-Trust Metrics -->
+          <div style="display: flex; align-items: center; gap: 2rem; border-top: 1px solid var(--card-border); padding-top: 1.75rem;">
+            <div>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary);"><12ms</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Inference Latency</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--card-border);"></div>
+            <div>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-success);">94.2%</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">ROC-AUC Score</div>
+            </div>
+            <div style="width: 1px; height: 32px; background: var(--card-border);"></div>
+            <div>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--brand-secondary);">100%</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Explainable AI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Interactive Diagnostic Terminal Card -->
+        <div class="float-element">
+          <div class="glass-card" style="padding: 2rem; border-color: rgba(99, 102, 241, 0.35); box-shadow: var(--shadow-lg);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.25rem;">
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="width:10px; height:10px; border-radius:50%; background:#f43f5e;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#10b981;"></span>
+                <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-left: 0.5rem;">health_audit.json</span>
+              </div>
+              <span class="badge badge-success"><i class="fa-solid fa-check"></i> Live Model Ready</span>
+            </div>
+
+            <!-- Simulation Box inside Hero -->
+            <div style="background: var(--bg-primary); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Account Target:</span>
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--text-primary);">Acme Cloud Systems</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Contract Type:</span>
+                <span style="font-size:0.85rem; color:var(--text-primary); font-weight:600;">Month-to-Month ($499/mo)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Support Friction:</span>
+                <span class="badge badge-danger" style="font-size:0.7rem; padding: 2px 8px;">6 Tickets (High)</span>
+              </div>
+              
+              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--card-border);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                  <span style="font-size:0.82rem; font-weight:700; color:var(--color-danger);"><i class="fa-solid fa-triangle-exclamation"></i> Churn Risk Alert</span>
+                  <span style="font-family:var(--font-mono); font-weight:800; font-size:1.1rem; color:var(--color-danger);">78.4%</span>
+                </div>
+                <div style="width:100%; height:6px; background:var(--bg-tertiary); border-radius:99px; overflow:hidden;">
+                  <div style="width:78.4%; height:100%; background:var(--color-danger); border-radius:99px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Prescriptive Action Preview -->
+            <div style="background: rgba(99, 102, 241, 0.08); border-left: 3px solid var(--brand-primary); padding: 0.85rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+              <div style="font-size:0.78rem; font-weight:700; color:var(--brand-primary); text-transform:uppercase;">Prescriptive Intervention:</div>
+              <div style="font-size:0.85rem; color:var(--text-primary); margin-top:3px;">
+                Dispatch VP Customer Success call + offer 15% discount on annual commitment to preserve $5,988 ARR.
+              </div>
+            </div>
+
+            <div style="margin-top: 1.25rem; text-align:center;">
+              <a href="{{ url_for('prediction_page') }}" style="font-size:0.85rem; font-weight:600; color:var(--brand-secondary);">
+                Test your own account parameters <i class="fa-solid fa-arrow-right" style="font-size:0.75rem;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FEATURES SECTION: Asymmetrical Cards Grid
+       ======================================================================== -->
+  <section class="features-section" style="padding: 4rem 0; border-top: 1px solid var(--card-border);">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+        <span class="badge badge-primary" style="margin-bottom: 0.75rem;">Core Capabilities</span>
+        <h2>Architected for Production Business Intelligence</h2>
+        <p style="margin-top: 0.75rem;">
+          Trained on high-dimensional behavioral signals to eliminate guesswork in customer retention.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <!-- Card 1 -->
+        <div class="glass-card">
+          <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--brand-primary); margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h3>Ensemble ML Scoring</h3>
+          <p style="margin-top: 0.6rem; font-size: 0.93rem;">
+            Leverages a tuned Random Forest pipeline combining standardized numerical indicators with one-hot encoded contract telemetry for high-accuracy predictions.
+          </p>
+          <div style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--brand-secondary);">
+            <i class="fa-solid fa-shield-check"></i> Scikit-Learn Pipeline (.pkl)
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card">
+          <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--brand-secondary); margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h3>Prescriptive Retention Playbooks</h3>
+          <p style="margin-top: 0.6rem; font-size: 0.93rem;">
+            Goes beyond raw probability numbers. Our rule-augmented recommendation engine formulates tailored business countermeasures for CS, Sales, and Leadership.
+          </p>
+          <div style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-success);">
+            <i class="fa-solid fa-arrow-trend-up"></i> Action-Oriented Strategies
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card">
+          <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--color-success); margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <h3>Transparent Feature Attribution</h3>
+          <p style="margin-top: 0.6rem; font-size: 0.93rem;">
+            Full diagnostic transparency. Inspect ranked Gini feature importances, ROC sensitivity curves, and interactive confusion matrices with zero black-box obscurity.
+          </p>
+          <div style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--brand-primary);">
+            <i class="fa-solid fa-chart-column"></i> Chart.js Visualization
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       HOW IT WORKS: 4-Step Progressive Timeline
+       ======================================================================== -->
+  <section class="how-it-works-section" style="padding: 4.5rem 0; background: var(--bg-secondary); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+        <span class="badge badge-cyan" style="margin-bottom: 0.75rem;">Workflow Architecture</span>
+        <h2>How OmniMetrics Computes Predictions</h2>
+        <p style="margin-top: 0.75rem;">
+          From raw client attributes to prescriptive revenue interventions in 4 frictionless steps.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.75rem; position: relative;">
+        
+        <!-- Step 1 -->
+        <div class="card" style="background: var(--card-bg-solid);">
+          <div style="font-family: var(--font-mono); font-size: 1.75rem; font-weight: 800; color: var(--brand-primary); margin-bottom: 0.75rem;">01</div>
+          <h4 style="margin-bottom: 0.5rem;">Parameter Ingestion</h4>
+          <p style="font-size: 0.88rem; color: var(--text-secondary);">
+            Ingests tenure, contract duration, ticket velocity, NPS sentiment, and billing metrics via REST API.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="card" style="background: var(--card-bg-solid);">
+          <div style="font-family: var(--font-mono); font-size: 1.75rem; font-weight: 800; color: var(--brand-secondary); margin-bottom: 0.75rem;">02</div>
+          <h4 style="margin-bottom: 0.5rem;">Feature Transformation</h4>
+          <p style="font-size: 0.88rem; color: var(--text-secondary);">
+            StandardScaler normalizes numerical scales while ColumnTransformer encodes categorical variables.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="card" style="background: var(--card-bg-solid);">
+          <div style="font-family: var(--font-mono); font-size: 1.75rem; font-weight: 800; color: var(--color-warning); margin-bottom: 0.75rem;">03</div>
+          <h4 style="margin-bottom: 0.5rem;">Ensemble Inference</h4>
+          <p style="font-size: 0.88rem; color: var(--text-secondary);">
+            180 balanced decision trees evaluate non-linear risk branches to yield calibrated probability estimates.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="card" style="background: var(--card-bg-solid);">
+          <div style="font-family: var(--font-mono); font-size: 1.75rem; font-weight: 800; color: var(--color-success); margin-bottom: 0.75rem;">04</div>
+          <h4 style="margin-bottom: 0.5rem;">Strategy Generation</h4>
+          <p style="font-size: 0.88rem; color: var(--text-secondary);">
+            Automated ranking identifies key friction drivers and pairs the result with prescriptive counter-actions.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       BENEFITS & BUSINESS IMPACT SECTION
+       ======================================================================== -->
+  <section class="benefits-section" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+        <div>
+          <span class="badge badge-success" style="margin-bottom: 0.75rem;">Measurable ROI</span>
+          <h2>Protect Enterprise ARR & Net Revenue Retention</h2>
+          <p style="margin-top: 1rem; font-size: 1.05rem; line-height: 1.6;">
+            Acquiring a new customer costs 5x more than retaining an existing one. By catching disengagement patterns early, business teams transform defensive account management into an expansion engine.
+          </p>
+
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem;">
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-success-bg); color: var(--color-success); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; margin-top: 2px;">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong style="color: var(--text-primary); font-size: 1rem;">Prevent Involuntary Churn</strong>
+                <p style="font-size: 0.9rem; margin-top: 2px;">Detect payment latency friction before credit card expiration or billing defaults take effect.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-success-bg); color: var(--color-success); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; margin-top: 2px;">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong style="color: var(--text-primary); font-size: 1rem;">Optimize Customer Success Resources</strong>
+                <p style="font-size: 0.9rem; margin-top: 2px;">Direct high-touch executive interventions specifically to high-risk, high-ARR enterprise tiers.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-success-bg); color: var(--color-success); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; margin-top: 2px;">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong style="color: var(--text-primary); font-size: 1rem;">Seamless Model Drop-in</strong>
+                <p style="font-size: 0.9rem; margin-top: 2px;">Replace the included Random Forest pipeline with your own pickle (.pkl) artifact in under 2 minutes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Scoreboard Box -->
+        <div>
+          <div class="glass-card" style="padding: 2.5rem; border-color: rgba(6, 182, 212, 0.3);">
+            <h3 style="margin-bottom: 1.5rem; text-align: center;">Platform Performance Benchmark</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+              <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--card-border); text-align: center;">
+                <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--brand-secondary);">+34%</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px;">Retention Uplift</div>
+              </div>
+
+              <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--card-border); text-align: center;">
+                <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--brand-primary);">5,000+</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px;">Validated Accounts</div>
+              </div>
+
+              <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--card-border); text-align: center;">
+                <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--color-success);">< 15ms</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px;">REST API Speed</div>
+              </div>
+
+              <div style="background: var(--bg-primary); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--card-border); text-align: center;">
+                <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: var(--color-warning);">0.942</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px;">ROC Area Under Curve</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+              <a href="{{ url_for('performance_page') }}" class="btn btn-outline btn-block">
+                <span>Inspect Full Diagnostic Curves</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CTA BANNER SECTION
+       ======================================================================== -->
+  <section class="cta-section" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div style="background: var(--brand-gradient); border-radius: var(--radius-xl); padding: 3.5rem 2.5rem; text-align: center; color: #ffffff; box-shadow: var(--brand-glow); position: relative; overflow: hidden;">
+        <div style="position: relative; z-index: 2; max-width: 650px; margin: 0 auto;">
+          <h2 style="color: #ffffff; margin-bottom: 1rem;">Ready to Score Your Customer Portfolio?</h2>
+          <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.15rem; margin-bottom: 2rem;">
+            Jump into the Prediction Studio to test live scenarios or explore the full dataset distribution.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="{{ url_for('prediction_page') }}" class="btn btn-secondary btn-lg" style="background:#ffffff; color:#0f172a; border-color:#ffffff;">
+              <i class="fa-solid fa-play"></i>
+              <span>Open Prediction Studio</span>
+            </a>
+            <a href="{{ url_for('dataset_page') }}" class="btn btn-outline btn-lg" style="color:#ffffff; border-color:rgba(255,255,255,0.4); background:rgba(0,0,0,0.15);">
+              <i class="fa-solid fa-table"></i>
+              <span>Explore Dataset</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

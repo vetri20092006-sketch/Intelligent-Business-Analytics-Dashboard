@@ -1,0 +1,264 @@
+{
+  "accuracy": 0.762,
+  "precision": 0.4367,
+  "recall": 0.655,
+  "f1_score": 0.524,
+  "roc_auc": 0.8037,
+  "confusion_matrix": {
+    "true_negative": 631,
+    "false_positive": 169,
+    "false_negative": 69,
+    "true_positive": 131,
+    "total_test_samples": 1000,
+    "accuracy_pct": 76.2,
+    "specificity_pct": 78.9
+  },
+  "roc_curve": [
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0025,
+      "y": 0.07
+    },
+    {
+      "x": 0.0075,
+      "y": 0.105
+    },
+    {
+      "x": 0.0125,
+      "y": 0.145
+    },
+    {
+      "x": 0.0213,
+      "y": 0.23
+    },
+    {
+      "x": 0.025,
+      "y": 0.265
+    },
+    {
+      "x": 0.0375,
+      "y": 0.295
+    },
+    {
+      "x": 0.045,
+      "y": 0.355
+    },
+    {
+      "x": 0.0537,
+      "y": 0.375
+    },
+    {
+      "x": 0.065,
+      "y": 0.4
+    },
+    {
+      "x": 0.0712,
+      "y": 0.425
+    },
+    {
+      "x": 0.085,
+      "y": 0.44
+    },
+    {
+      "x": 0.0912,
+      "y": 0.475
+    },
+    {
+      "x": 0.1013,
+      "y": 0.495
+    },
+    {
+      "x": 0.1087,
+      "y": 0.51
+    },
+    {
+      "x": 0.1163,
+      "y": 0.53
+    },
+    {
+      "x": 0.1225,
+      "y": 0.555
+    },
+    {
+      "x": 0.13,
+      "y": 0.58
+    },
+    {
+      "x": 0.1363,
+      "y": 0.6
+    },
+    {
+      "x": 0.15,
+      "y": 0.62
+    },
+    {
+      "x": 0.175,
+      "y": 0.64
+    },
+    {
+      "x": 0.2112,
+      "y": 0.655
+    },
+    {
+      "x": 0.2175,
+      "y": 0.675
+    },
+    {
+      "x": 0.2475,
+      "y": 0.715
+    },
+    {
+      "x": 0.2675,
+      "y": 0.74
+    },
+    {
+      "x": 0.2875,
+      "y": 0.76
+    },
+    {
+      "x": 0.2988,
+      "y": 0.775
+    },
+    {
+      "x": 0.38,
+      "y": 0.795
+    },
+    {
+      "x": 0.4062,
+      "y": 0.81
+    },
+    {
+      "x": 0.4238,
+      "y": 0.83
+    },
+    {
+      "x": 0.455,
+      "y": 0.855
+    },
+    {
+      "x": 0.4938,
+      "y": 0.87
+    },
+    {
+      "x": 0.5212,
+      "y": 0.885
+    },
+    {
+      "x": 0.5663,
+      "y": 0.9
+    },
+    {
+      "x": 0.5913,
+      "y": 0.915
+    },
+    {
+      "x": 0.6925,
+      "y": 0.93
+    },
+    {
+      "x": 0.7087,
+      "y": 0.95
+    },
+    {
+      "x": 0.795,
+      "y": 0.965
+    },
+    {
+      "x": 0.855,
+      "y": 0.985
+    },
+    {
+      "x": 1.0,
+      "y": 1.0
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "product_usage_score",
+      "display_name": "Product Engagement Score",
+      "importance": 0.2988,
+      "percentage": 29.88
+    },
+    {
+      "feature": "nps_score",
+      "display_name": "Net Promoter Score (NPS)",
+      "importance": 0.1936,
+      "percentage": 19.36
+    },
+    {
+      "feature": "support_tickets_quarter",
+      "display_name": "Support Tickets (Quarter)",
+      "importance": 0.1011,
+      "percentage": 10.11
+    },
+    {
+      "feature": "monthly_charges",
+      "display_name": "Monthly Recurring Spend",
+      "importance": 0.0889,
+      "percentage": 8.89
+    },
+    {
+      "feature": "total_charges",
+      "display_name": "Lifetime Value / Total Spend",
+      "importance": 0.0801,
+      "percentage": 8.01
+    },
+    {
+      "feature": "tenure_months",
+      "display_name": "Customer Tenure (Months)",
+      "importance": 0.0748,
+      "percentage": 7.48
+    },
+    {
+      "feature": "contract_length_months",
+      "display_name": "Contract Term (Months)",
+      "importance": 0.054,
+      "percentage": 5.4
+    },
+    {
+      "feature": "contract_type_Month-to-Month",
+      "display_name": "Contract: Month-to-Month",
+      "importance": 0.0403,
+      "percentage": 4.03
+    },
+    {
+      "feature": "payment_delay_days",
+      "display_name": "Payment Delays (Days)",
+      "importance": 0.0277,
+      "percentage": 2.77
+    },
+    {
+      "feature": "contract_type_Multi-Year",
+      "display_name": "Contract: Multi-Year",
+      "importance": 0.0256,
+      "percentage": 2.56
+    },
+    {
+      "feature": "service_tier_Starter",
+      "display_name": "Service Tier Starter",
+      "importance": 0.0078,
+      "percentage": 0.78
+    },
+    {
+      "feature": "service_tier_Growth",
+      "display_name": "Tier: Growth",
+      "importance": 0.0074,
+      "percentage": 0.74
+    }
+  ],
+  "training_samples": 4000,
+  "test_samples": 1000,
+  "model_type": "Random Forest Ensemble (Pipeline)",
+  "parameters": {
+    "n_estimators": 180,
+    "max_depth": 9,
+    "min_samples_leaf": 4,
+    "class_weight": "balanced",
+    "cross_validation": "5-Fold Stratified Split",
+    "scaler": "StandardScaler",
+    "encoder": "OneHotEncoder(drop='first')"
+  }
+}

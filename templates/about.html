@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-fade-in" id="about-page-container">
+  <div class="container">
+    
+    <!-- Page Header -->
+    <div style="margin-bottom: 2.5rem;">
+      <div style="display:inline-flex; align-items:center; gap:0.5rem; padding: 4px 12px; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-full); margin-bottom: 0.75rem;">
+        <i class="fa-solid fa-code-branch" style="color:var(--brand-primary); font-size:0.8rem;"></i>
+        <span style="font-size:0.78rem; font-weight:700; color:var(--brand-primary); text-transform:uppercase;">System Architecture & Engineering</span>
+      </div>
+      <h2>About OmniMetrics AI Platform</h2>
+      <p style="margin-top: 0.5rem; max-width: 700px;">
+        An end-to-end Machine Learning intelligence framework designed to bridge the gap between predictive statistical modeling and actionable executive decision-making.
+      </p>
+    </div>
+
+    <!-- Project Overview & Motivation Grid -->
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fa-solid fa-bullseye" style="color:var(--brand-primary)"></i> Project Objectives & Scope
+          </h3>
+          <span class="badge badge-primary">Mini-Project</span>
+        </div>
+        <p style="margin-bottom: 1rem;">
+          In modern SaaS and enterprise subscription business models, customer acquisition costs continue to climb. Retaining high-value accounts requires shifting from <em>reactive customer support</em> to <em>predictive customer success</em>.
+        </p>
+        <p style="margin-bottom: 1rem;">
+          OmniMetrics was engineered as a production-grade machine learning platform that ingests high-dimensional telemetry, contract parameters, and friction indicators. Rather than outputting an opaque probability score, it provides transparent feature attribution and prescriptive interventions.
+        </p>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+          <div style="background:var(--bg-secondary); padding: 1rem; border-radius: var(--radius-md); border:1px solid var(--card-border);">
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;"><i class="fa-solid fa-bolt" style="color:var(--brand-secondary)"></i> Low Latency</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Real-time Python Flask inference API executes in under 15 milliseconds.</div>
+          </div>
+          <div style="background:var(--bg-secondary); padding: 1rem; border-radius: var(--radius-md); border:1px solid var(--card-border);">
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:4px;"><i class="fa-solid fa-lock" style="color:var(--color-success)"></i> Local Privacy</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Self-contained on-premise execution with zero third-party cloud data leakage.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fa-solid fa-layer-group" style="color:var(--brand-secondary)"></i> Technology Stack
+          </h3>
+          <span class="badge badge-cyan">Ecosystem</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-brands fa-python" style="font-size: 1.4rem; color: #3b82f6;"></i>
+              <div>
+                <strong style="color: var(--text-primary);">Python 3.11 Backend</strong>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Flask 3.1 REST Server, Pandas, NumPy</div>
+              </div>
+            </div>
+            <span class="badge" style="background:var(--bg-tertiary); color:var(--text-secondary);">Core Runtime</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-brain" style="font-size: 1.4rem; color: #f59e0b;"></i>
+              <div>
+                <strong style="color: var(--text-primary);">Scikit-Learn 1.9+</strong>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">RandomForest, ColumnTransformer, Joblib</div>
+              </div>
+            </div>
+            <span class="badge badge-warning">ML Engine</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-chart-simple" style="font-size: 1.4rem; color: #f43f5e;"></i>
+              <div>
+                <strong style="color: var(--text-primary);">Chart.js 4.4</strong>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Interactive ROC, Confusion Matrix, Feature Importance</div>
+              </div>
+            </div>
+            <span class="badge badge-danger">Visualization</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-brands fa-html5" style="font-size: 1.4rem; color: #10b981;"></i>
+              <div>
+                <strong style="color: var(--text-primary);">Modern Vanilla Web</strong>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Semantic HTML5, CSS Variables, Glassmorphism, ES6+</div>
+              </div>
+            </div>
+            <span class="badge badge-success">Frontend UI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Architecture Diagram Card -->
+    <div id="architecture" class="card" style="margin-bottom: 3rem;">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">
+            <i class="fa-solid fa-diagram-project" style="color:var(--brand-primary)"></i> End-to-End Pipeline Architecture
+          </h3>
+          <p class="card-subtitle">Data flow from client ingestion to probability distribution</p>
+        </div>
+        <span class="badge badge-primary">Flow</span>
+      </div>
+
+      <div style="background: var(--bg-primary); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border); overflow-x: auto;">
+        <div style="min-width: 680px; display: flex; align-items: center; justify-content: space-between; position: relative;">
+          
+          <!-- Node 1 -->
+          <div style="text-align: center; width: 150px;">
+            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(99, 102, 241, 0.15); border: 2px solid var(--brand-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; color: var(--brand-primary); font-size: 1.3rem;">
+              <i class="fa-solid fa-user-gear"></i>
+            </div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">Client Input</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Form / REST JSON</div>
+          </div>
+
+          <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary)); margin: 0 10px;"></div>
+
+          <!-- Node 2 -->
+          <div style="text-align: center; width: 150px;">
+            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(6, 182, 212, 0.15); border: 2px solid var(--brand-secondary); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; color: var(--brand-secondary); font-size: 1.3rem;">
+              <i class="fa-solid fa-filter"></i>
+            </div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">Preprocessing</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Scaler + OneHot</div>
+          </div>
+
+          <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--brand-secondary), var(--color-warning)); margin: 0 10px;"></div>
+
+          <!-- Node 3 -->
+          <div style="text-align: center; width: 160px;">
+            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(245, 158, 11, 0.15); border: 2px solid var(--color-warning); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; color: var(--color-warning); font-size: 1.3rem;">
+              <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">RF Ensemble</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">180 Estimator Trees</div>
+          </div>
+
+          <div style="flex: 1; height: 2px; background: linear-gradient(90deg, var(--color-warning), var(--color-success)); margin: 0 10px;"></div>
+
+          <!-- Node 4 -->
+          <div style="text-align: center; width: 150px;">
+            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); border: 2px solid var(--color-success); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; color: var(--color-success); font-size: 1.3rem;">
+              <i class="fa-solid fa-compass"></i>
+            </div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">Prescriptive Output</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Risk Gauge & Actions</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         STEP-BY-STEP INSTRUCTIONS: How to Replace Dataset & Trained Model (.pkl)
+         ======================================================================== -->
+    <div id="replace-model" class="card" style="border-color: rgba(6, 182, 212, 0.4); margin-bottom: 3rem;">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">
+            <i class="fa-solid fa-arrows-rotate" style="color:var(--brand-secondary)"></i> How to Replace Dataset & Custom Trained Model (.pkl)
+          </h3>
+          <p class="card-subtitle">Developer instructions for swapping in your own dataset and trained pipeline</p>
+        </div>
+        <span class="badge badge-cyan">Developer Guide</span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1.75rem;">
+        
+        <!-- Step 1 -->
+        <div style="border-left: 3px solid var(--brand-primary); padding-left: 1.25rem;">
+          <h4 style="color:var(--text-primary); margin-bottom:0.4rem;">
+            Step 1: Replace the Dataset File
+          </h4>
+          <p style="font-size:0.92rem; margin-bottom:0.75rem;">
+            Copy your custom CSV dataset into the <code style="font-family:var(--font-mono); background:var(--bg-tertiary); padding:2px 6px; border-radius:4px; color:var(--brand-secondary);">data/</code> directory.
+          </p>
+          <div style="background:var(--bg-primary); padding:0.85rem 1rem; border-radius:var(--radius-md); font-family:var(--font-mono); font-size:0.84rem; color:var(--text-secondary); border:1px solid var(--card-border);">
+            # Replace target CSV at:<br>
+            data/business_analytics_dataset.csv
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="border-left: 3px solid var(--brand-secondary); padding-left: 1.25rem;">
+          <h4 style="color:var(--text-primary); margin-bottom:0.4rem;">
+            Step 2: Drop In Your Trained Pickle Model (.pkl)
+          </h4>
+          <p style="font-size:0.92rem; margin-bottom:0.75rem;">
+            Export your scikit-learn model, XGBoost, or custom Pipeline using <code style="font-family:var(--font-mono); color:var(--brand-primary);">joblib.dump(model, "models/model.pkl")</code> and place it in the <code style="font-family:var(--font-mono); color:var(--brand-secondary);">models/</code> directory:
+          </p>
+          <div style="background:var(--bg-primary); padding:0.85rem 1rem; border-radius:var(--radius-md); font-family:var(--font-mono); font-size:0.84rem; color:var(--text-secondary); border:1px solid var(--card-border);">
+            # Place trained model file at:<br>
+            models/model.pkl
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div style="border-left: 3px solid var(--color-warning); padding-left: 1.25rem;">
+          <h4 style="color:var(--text-primary); margin-bottom:0.4rem;">
+            Step 3: Update Feature Names in config.py (If Features Differ)
+          </h4>
+          <p style="font-size:0.92rem; margin-bottom:0.75rem;">
+            If your dataset has different feature column names, simply update the feature lists in <code style="font-family:var(--font-mono); color:var(--color-warning);">config.py</code>:
+          </p>
+          <div style="background:var(--bg-primary); padding:1rem; border-radius:var(--radius-md); font-family:var(--font-mono); font-size:0.82rem; color:var(--text-secondary); border:1px solid var(--card-border); line-height: 1.5;">
+            # In config.py:<br>
+            REQUIRED_NUMERIC_FEATURES = [<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"your_feature_1", "your_feature_2", ...<br>
+            ]<br>
+            REQUIRED_CATEGORICAL_FEATURES = [<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"your_category_1", ...<br>
+            ]
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div style="border-left: 3px solid var(--color-success); padding-left: 1.25rem;">
+          <h4 style="color:var(--text-primary); margin-bottom:0.4rem;">
+            Step 4: Re-generate Metrics (Optional or Automated)
+          </h4>
+          <p style="font-size:0.92rem; margin-bottom:0.75rem;">
+            You can run <code style="font-family:var(--font-mono); color:var(--color-success);">python train_model.py</code> at any time to automatically retrain the pipeline on your new dataset, update the ROC curves, and refresh the confusion matrix JSON cached at <code style="font-family:var(--font-mono);">models/metrics.json</code>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

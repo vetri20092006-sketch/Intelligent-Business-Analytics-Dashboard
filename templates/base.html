@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "OmniMetrics AI - Intelligent Business Analytics" }}</title>
+  
+  <!-- SEO & OpenGraph Meta -->
+  <meta name="description" content="Production-quality Machine Learning platform for customer churn intelligence, predictive health scoring, and prescriptive enterprise retention strategies.">
+  <meta name="theme-color" content="#090d16">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Core App Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+
+  <!-- Chart.js 4.4 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" role="region" aria-live="polite"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="{{ url_for('index') }}" class="logo-brand">
+        <div class="logo-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <span>OmniMetrics<span style="color:var(--brand-secondary)">.ai</span></span>
+        <span class="logo-tag">ML Engine</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li>
+            <a href="{{ url_for('index') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('prediction_page') }}" class="nav-link {% if active_page == 'prediction' %}active{% endif %}">
+              Prediction Studio
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('performance_page') }}" class="nav-link {% if active_page == 'performance' %}active{% endif %}">
+              Model Performance
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('dataset_page') }}" class="nav-link {% if active_page == 'dataset' %}active{% endif %}">
+              Dataset Info
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('about_page') }}" class="nav-link {% if active_page == 'about' %}active{% endif %}">
+              About Project
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('contact_page') }}" class="nav-link {% if active_page == 'contact' %}active{% endif %}">
+              Contact & FAQ
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons & Theme Switcher -->
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Color Theme">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+
+        <a href="{{ url_for('prediction_page') }}" class="btn btn-primary btn-sm" style="display:none; @media(min-width:768px){display:inline-flex;}">
+          <span>Predict Now</span>
+          <i class="fa-solid fa-arrow-right" style="font-size:0.8rem;"></i>
+        </a>
+
+        <!-- Mobile Nav Trigger -->
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle Mobile Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation Drawer">
+    <a href="{{ url_for('index') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}">
+      <i class="fa-solid fa-house" style="width:24px;"></i> Home
+    </a>
+    <a href="{{ url_for('prediction_page') }}" class="nav-link {% if active_page == 'prediction' %}active{% endif %}">
+      <i class="fa-solid fa-brain" style="width:24px;"></i> Prediction Studio
+    </a>
+    <a href="{{ url_for('performance_page') }}" class="nav-link {% if active_page == 'performance' %}active{% endif %}">
+      <i class="fa-solid fa-chart-pie" style="width:24px;"></i> Model Performance
+    </a>
+    <a href="{{ url_for('dataset_page') }}" class="nav-link {% if active_page == 'dataset' %}active{% endif %}">
+      <i class="fa-solid fa-database" style="width:24px;"></i> Dataset Info
+    </a>
+    <a href="{{ url_for('about_page') }}" class="nav-link {% if active_page == 'about' %}active{% endif %}">
+      <i class="fa-solid fa-circle-info" style="width:24px;"></i> About Project
+    </a>
+    <a href="{{ url_for('contact_page') }}" class="nav-link {% if active_page == 'contact' %}active{% endif %}">
+      <i class="fa-solid fa-envelope" style="width:24px;"></i> Contact & FAQ
+    </a>
+  </aside>
+
+  <!-- Main Content View -->
+  <main class="main-content">
+    {% block content %}
+      {% if error_title %}
+        <div class="container" style="text-align:center; padding: 4rem 1rem;">
+          <h2>{{ error_title }}</h2>
+          <p style="margin-top: 1rem;">{{ error_message }}</p>
+          <a href="{{ url_for('index') }}" class="btn btn-primary" style="margin-top: 2rem;">Return Home</a>
+        </div>
+      {% endif %}
+    {% endblock %}
+  </main>
+
+  <!-- Scroll-to-Top Button -->
+  <button id="scroll-top-btn" class="scroll-top-btn" title="Back to top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Master Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-brand">
+            <div class="logo-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <span>OmniMetrics<span style="color:var(--brand-secondary)">.ai</span></span>
+          </div>
+          <p>
+            An enterprise-grade Intelligent Business Analytics platform providing real-time customer health intelligence, churn risk prediction, and actionable retention playbooks.
+          </p>
+          <div class="footer-status-pill">
+            <span class="footer-status-dot"></span>
+            <span>RF Ensemble Engine v2.4 • 99.98% Latency SLA</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="{{ url_for('index') }}">Executive Overview</a></li>
+            <li><a href="{{ url_for('prediction_page') }}">Prediction Studio</a></li>
+            <li><a href="{{ url_for('performance_page') }}">Model Diagnostics</a></li>
+            <li><a href="{{ url_for('dataset_page') }}">Dataset Explorer</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <ul class="footer-links">
+            <li><a href="{{ url_for('about_page') }}#architecture">System Architecture</a></li>
+            <li><a href="{{ url_for('about_page') }}#replace-model">Substitute Custom .pkl</a></li>
+            <li><a href="{{ url_for('contact_page') }}#faq">Integration FAQ</a></li>
+            <li><a href="{{ url_for('download_dataset') }}">Download Sample CSV</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="https://scikit-learn.org" target="_blank" rel="noopener">Scikit-Learn Pipeline</a></li>
+            <li><a href="https://flask.palletsprojects.com" target="_blank" rel="noopener">Flask Microframework</a></li>
+            <li><a href="https://www.chartjs.org" target="_blank" rel="noopener">Chart.js Visualization</a></li>
+            <li><a href="{{ url_for('contact_page') }}">Developer Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 OmniMetrics AI — Built for Machine Learning & Business Intelligence Mini-Project.
+        </div>
+        <div style="display:flex; gap:1.25rem;">
+          <a href="#" style="color:var(--text-muted);"><i class="fa-brands fa-github"></i></a>
+          <a href="#" style="color:var(--text-muted);"><i class="fa-brands fa-python"></i></a>
+          <a href="#" style="color:var(--text-muted);"><i class="fa-solid fa-code"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>
